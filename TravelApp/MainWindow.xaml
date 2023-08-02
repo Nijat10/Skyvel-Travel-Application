@@ -1,0 +1,114 @@
+﻿<Window x:Class="TravelApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelApp"
+        xmlns:view="clr-namespace:TravelApp.Views"
+                     xmlns:local2="clr-namespace:TravelApp.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+              xmlns:local1="clr-namespace:TravelApp.ViewModels"
+
+        mc:Ignorable="d"
+        Title="SkyVell" Width="800" Height="480" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="35"/>
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local1:FlightViewModel}">
+            <local2:FlightView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:HotelGoodJob}">
+            <local2:HotelGoodJobView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:FindHotelsViewModel}">
+            <local2:FindHotelsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:GoodJobViewModel}">
+            <local2:GoodJobView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:FindDealsViewModel}">
+            <local2:FindDeals />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:FindDeals2ViewModel}">
+            <local2:FindDeals2View />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:SignInViewModel}">
+            <local2:SignInView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:PlanViewModel}">
+            <local2:PlanningView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:RegisterViewModel}">
+            <local2:RegisterView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:HotelViewModel}">
+            <local2:HotelView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:ApplicationViewModel}">
+            <local2:ApplicationView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:WelcomeViewModel}">
+            <local2:WelcomeView />
+        </DataTemplate>
+
+
+
+        <DataTemplate DataType="{x:Type local1:ConcertViewModel}">
+            <local2:ConcertView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:MuseumViewModel}">
+            <local2:MuseumView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:ParkViewModel}">
+            <local2:ParkView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local1:RestaurantViewModel}">
+            <local2:RestaurantView />
+        </DataTemplate>
+
+
+
+
+
+    </Window.Resources>
+    <!--<Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonClose">
+            <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpen">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>-->
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Panel.ZIndex="1" VerticalAlignment="Top" Background="Transparent">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="Views/Images/Untitled-1.png" Width="35" Height="30" HorizontalAlignment="Left"/>
+                <TextBlock Text="Skyvel" TextAlignment="Center" FontFamily="Segoe UI" Margin="0 5" FontSize="15" Width="60" FontWeight="Bold" Foreground="#052860" Height="30"></TextBlock>
+
+            </StackPanel>
+            <StackPanel MaxHeight="30" VerticalAlignment="Center" HorizontalAlignment="Right" WindowChrome.IsHitTestVisibleInChrome="True" Orientation="Horizontal">
+                <Button Width="30" Height="30" Content="🗕" FontSize="20"  Name="MinimizeButton" Foreground="Black" Padding="0" Click="MinimizeButton_Click"/>
+                <Button Width="30" Height="30" Content="🗖" Name="MaximizeButton" Foreground="Black" Padding="0" Click="MaximizeButton_Click"/>
+                <Button Width="30" Height="30" Content="✖" FontSize="13" Name="CloseButton" Foreground="Black" Padding="0" Click="CloseButton_Click"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding Zindex}"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Panel.ZIndex="99" Grid.Column="0"  >
+                <view:SlideView DataContext="{Binding SlideViewModel}" />
+            </Grid>
+            <ContentControl  Grid.Column="1" Content="{Binding CurrentView}" />
+        </Grid>
+    </Grid>
+</Window>
